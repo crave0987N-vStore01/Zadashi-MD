@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Zadashi MD | admin</title><link rel="icon" href="/favicon.png"><meta name="theme-color" content="#010503"><link rel="manifest" href="/manifest.webmanifest"><meta property="og:type" content="website"><meta property="og:title" content="Zadashi MD - WhatsApp bot"><meta property="og:description" content="Free multi-device WhatsApp bot: downloads, sticker studio, tools and pro group moderation. Bot Developed &amp; Powered by Nimah Dev."><meta property="og:image" content="/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Zadashi MD - free multi-device WhatsApp bot. Link your number in seconds."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/zadashi.css?v=13"></head>
+<body><canvas id="rain"></canvas><div class="bg"></div>
+<header class="nav"><div class="nav-in"><a class="brand" href="/"><span class="pr">zadashi@md</span><span class="pc">:~$</span><span class="cb"></span></a><nav class="links"><a href="/">pair</a><a href="/commands">commands</a><a href="/settings">settings</a><a href="/admin" class="cur">admin</a></nav></div></header>
+<main class="wrap" style="max-width:860px">
+<div class="sec" style="margin-top:10px"><div class="cmd">sudo su -</div><h2>admin <b>panel</b></h2><p class="sub">server owner only.</p></div>
+<div class="win" id="login" style="max-width:460px"><div class="bar"><i></i><i></i><i></i><span>root login</span></div><div class="body"><label>admin password</label><input id="pw" type="password"><button class="btn pri" id="lg">login</button><div class="msg" id="lm"></div></div></div>
+<div class="hide" id="panel"><div class="stats"><div class="stat"><b id="a1">-</b><span>online</span></div><div class="stat"><b id="a2">-</b><span>total</span></div><div class="stat"><b id="a3">-</b><span>ram mb</span></div><div class="stat"><b id="a4">-</b><span>minutes</span></div></div>
+<div class="win" style="margin-top:20px;overflow-x:auto"><div class="bar"><i></i><i></i><i></i><span>ps aux | grep bots</span></div><div class="body"><table><thead><tr><th>number</th><th>status</th><th>mode</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></div>
+<button class="btn ghost" id="lo">logout</button></div>
+</main>
+<footer>Bot Developed &amp; Powered by <b class="nd">Nimah Dev</b><span class="ver">Zadashi MD V02</span></footer>
+<script src="/fx.js"></script>
+<script>
+const $=i=>document.getElementById(i);let T=sessionStorage.getItem('zd_at')||'';
+async function api(u,m,b){const r=await fetch(u,{method:m||'GET',headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:b?JSON.stringify(b):undefined});let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.error||'Error');return j}
+async function load(){try{const s=await api('/api/admin/stats');$('login').classList.add('hide');$('panel').classList.remove('hide');$('a1').textContent=s.active;$('a2').textContent=s.total;$('a3').textContent=s.rssMb;$('a4').textContent=Math.floor(s.uptime/60);
+const l=await api('/api/admin/sessions');$('rows').innerHTML=l.sessions.map(x=>'<tr><td>+'+(x.number||'pairing')+'</td><td><span class="dot'+(x.connected?' on':'')+'"></span>'+(x.connected?'online':'offline')+'</td><td>'+x.mode+'</td><td><button class="mini" data-r="'+x.id+'">restart</button><button class="mini d" data-d="'+x.id+'">remove</button></td></tr>').join('')||'<tr><td colspan=4>no bots yet</td></tr>'}catch(e){T='';sessionStorage.removeItem('zd_at')}}
+$('lg').onclick=async()=>{try{const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:$('pw').value})});const j=await r.json();if(!r.ok)throw new Error(j.error);T=j.token;sessionStorage.setItem('zd_at',T);load()}catch(e){$('lm').className='msg err';$('lm').textContent=e.message}};
+$('rows').onclick=async e=>{const r=e.target.dataset.r,d=e.target.dataset.d;try{if(r)await api('/api/admin/sessions/'+r+'/restart','POST');if(d&&confirm('Remove this bot?'))await api('/api/admin/sessions/'+d,'DELETE');load()}catch(x){alert(x.message)}};
+$('lo').onclick=()=>{sessionStorage.removeItem('zd_at');location.reload()};
+if(T){load();setInterval(load,10000)}
+</script></body></html>

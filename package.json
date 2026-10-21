@@ -1,0 +1,27 @@
+{
+  "name": "zadashi-md",
+  "version": "2.0.0",
+  "description": "Zadashi - MD \u2014 WhatsApp multi-device bot \u00b7 Powered By Bozz squad",
+  "author": "Bozz squad",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "UV_THREADPOOL_SIZE=16 node --expose-gc index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "6.7.24",
+    "axios": "^1.6.0",
+    "express": "^4.19.2",
+    "pdf-lib": "^1.17.1",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.3",
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "optionalDependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}

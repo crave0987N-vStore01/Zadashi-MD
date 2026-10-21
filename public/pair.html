@@ -1,0 +1,134 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Zadashi MD | root access</title><link rel="icon" href="/favicon.png"><meta name="theme-color" content="#010503"><link rel="manifest" href="/manifest.webmanifest"><meta property="og:type" content="website"><meta property="og:title" content="Zadashi MD - WhatsApp bot"><meta property="og:description" content="Free multi-device WhatsApp bot: downloads, sticker studio, tools and pro group moderation. Bot Developed &amp; Powered by Nimah Dev."><meta property="og:image" content="/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Zadashi MD - free multi-device WhatsApp bot. Link your number in seconds."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/zadashi.css?v=13"></head>
+<body><canvas id="rain"></canvas><div class="bg"></div>
+<header class="nav"><div class="nav-in"><a class="brand" href="/"><span class="pr">zadashi@md</span><span class="pc">:~$</span><span class="cb"></span></a><nav class="links"><a href="/" class="cur">pair</a><a href="/commands">commands</a><a href="/settings">settings</a><a href="/admin">admin</a></nav></div></header>
+<main class="wrap">
+<section class="hero">
+<div class="win"><div class="bar"><i></i><i></i><i></i><span>root@zadashi-md: ~/boot.log</span></div><div class="body">
+<pre class="boot" id="boot"></pre>
+<h1 class="title glitch" data-text="ZADASHI_MD">ZADASHI<em>_MD</em></h1>
+<p class="lead">WhatsApp multi-device bot. Downloads, stickers, tools and group control. Free. No API keys.</p>
+<div class="cta"><a class="pill pri" href="#pair">link_device</a><a class="pill" href="#modules">list_modules</a></div>
+</div></div>
+<div class="win"><div class="bar"><i></i><i></i><i></i><span>neofetch</span></div><div class="body">
+<div class="fetch"><img src="/logo.jpg" alt="Zadashi MD"><ul class="kv">
+<li><span>root</span><span>zadashi@md</span></li><li><span>os</span><span>WhatsApp Multi-Device</span></li><li><span>bot</span><span>Zadashi MD V02</span></li><li><span>cmds</span><span id="h1">84</span></li><li><span>online</span><span id="h2">-</span></li><li><span>uptime</span><span>24/7</span></li><li><span>dev</span><span class="g">Nimah Dev</span></li></ul></div>
+<hr class="hr"><div class="msg" style="margin:0;text-align:left"><span class="dot on"></span>system online</div>
+</div></div>
+</section>
+
+<div class="grid" id="pair">
+<section class="win" id="main"><div class="bar"><i></i><i></i><i></i><span>./link_device.sh</span></div><div class="body">
+<div id="pairBox">
+<h3>link your whatsapp</h3>
+<div class="tabs"><button class="tab on" id="tCode">pair_code</button><button class="tab" id="tQr">qr_code</button></div>
+<div id="pCode"><label for="num">number (with country code)</label><input id="num" type="tel" inputmode="numeric" placeholder="94771234567" autocomplete="off">
+<button class="btn pri" id="go">get_code</button><div id="out"></div>
+<ol class="steps"><li>type your number, run get_code</li><li>whatsapp &gt; linked devices &gt; link with phone number</li><li>enter the code shown here</li></ol></div>
+<div id="pQr" class="hide"><div class="qr"><img id="qrimg" alt="QR" class="hide"></div><div class="msg" id="qrmsg">preparing qr...</div>
+<ol class="steps"><li>whatsapp &gt; linked devices &gt; link a device</li><li>scan this qr code</li></ol></div>
+<div class="msg" id="msg"></div>
+<div class="msg"><span class="dot" id="dot"></span><span id="st">waiting for link</span></div>
+</div>
+<div id="doneBox" class="done hide">
+<div class="big">[ OK ]</div><h3>bot connected</h3>
+<p class="note" id="doneTxt">Your bot is online. Open your WhatsApp chat with yourself to see the welcome message and your settings password.</p>
+<button class="btn pri" id="another">pair_another</button>
+<a class="btn ghost" href="/settings">open_settings</a>
+</div>
+</div></section>
+<aside>
+<div class="win" id="linkedCard"><div class="bar"><i></i><i></i><i></i><span>cat linked.log</span></div><div class="body"><ul class="feat" id="linked"><li><span>no numbers yet</span><b>-</b></li></ul></div></div>
+<div class="win"><div class="bar"><i></i><i></i><i></i><span>sysinfo</span></div><div class="body"><ul class="feat"><li><span>commands</span><b id="s1">84</b></li><li><span>uptime</span><b>24 / 7</b></li><li><span>downloads</span><b>YT, TikTok, FB, IG</b></li><li><span>api keys</span><b>not needed</b></li><li><span>price</span><b class="g">free</b></li></ul></div></div>
+</aside></div>
+
+<section class="sec" id="demo"><div class="cmd">./try_it.sh</div><h2>try the bot <b>right here</b></h2><p class="sub">type a command. this is a live simulation of the whatsapp bot.</p>
+<div class="win"><div class="bar"><i></i><i></i><i></i><span>zadashi-md: simulator</span></div><div class="body">
+<div class="chips" id="chips"><button data-c="help">help</button><button data-c="menu">menu</button><button data-c="song despacito">song</button><button data-c="ttp 5 Hello">ttp</button><button data-c="8ball will I win?">8ball</button><button data-c="ship Kasun &amp; Nimali">ship</button><button data-c="free vpn">free</button><button data-c="ping">ping</button></div>
+<div class="termout" id="tout"></div>
+<div class="termin"><span class="pr">user@zadashi:~$</span><input id="tin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type help"></div>
+</div></div></section>
+
+<section class="sec" id="modules"><div class="cmd">ls -la /modules</div><h2>everything in <b>one bot</b></h2><p class="sub">send .menu in whatsapp and reply with a number.</p>
+<div class="mods">
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>download</span></div><h4>songs_videos</h4><p>Type a name, get the MP3. YouTube, TikTok, Facebook, Instagram, SoundCloud and more.</p><code>.song  .video  .tiktok</code></div>
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>search</span></div><h4>search</h4><p>Pictures, lyrics, Wikipedia, weather and translation in any language.</p><code>.img  .lyrics  .wiki</code></div>
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>sticker</span></div><h4>sticker_studio</h4><p>Text to sticker in 10 styles, animated rainbow text, quote and round stickers. Sinhala works.</p><code>.ttp  .attp  .qc  .take</code></div>
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>tools</span></div><h4>tools</h4><p>QR codes, text to speech, short links, calculator, screenshots, PDF, passwords.</p><code>.qr  .tts  .ss  .topdf</code></div>
+<div class="mod"><div class="perm"><span>drwxr-x---</span><span>group</span></div><h4>mod_system</h4><p>Warn system, anti-link, anti-spam, bad-word filter, rules, welcome and goodbye.</p><code>.warn  .antispam  .modpanel</code></div>
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>fun</span></div><h4>fun_pack</h4><p>8 ball, ship, truth or dare, fancy fonts and more.</p><code>.8ball  .ship  .fancy</code></div>
+<div class="mod"><div class="perm"><span>drwxr-xr-x</span><span>tools</span></div><h4>free_zone</h4><p>Free VPNs, courses, design and dev tools, one command away.</p><code>.free vpn</code></div>
+<div class="mod"><div class="perm"><span>drwx------</span><span>owner</span></div><h4>control_panel</h4><p>Public or private mode, anti-call, auto read and more, from the website.</p><code>/settings</code></div>
+</div></section>
+
+<section class="sec"><div class="cmd">./how_it_works.sh</div><h2>online in <b>3 steps</b></h2><p class="sub">no install. no keys.</p>
+<div class="how"><div class="mod"><h4>enter_number</h4><p>Use the pair code or scan the QR above.</p></div><div class="mod"><h4>confirm_in_whatsapp</h4><p>Linked devices, then enter the code.</p></div><div class="mod"><h4>send_.menu</h4><p>Your bot is live. Check your own chat for the password.</p></div></div></section>
+
+<section class="sec"><div class="cmd">cat faq.txt</div><h2>quick <b>answers</b></h2><p class="sub">&nbsp;</p><div style="max-width:760px">
+<details><summary>is it free</summary><p>Yes. Every command runs on free services and needs no API keys.</p></details>
+<details><summary>is my whatsapp safe</summary><p>The bot links as a linked device. You can unlink any time from Settings or from WhatsApp itself.</p></details>
+<details><summary>open settings</summary><p>Log in on the Settings page with your number and the password the bot sent to your own chat.</p></details>
+<details><summary>more than one number</summary><p>Yes. Every number gets its own bot.</p></details></div></section>
+
+<section class="sec"><div class="band"><div class="cmd" style="margin-bottom:10px">./join_channel.sh</div><h2>join the official channel</h2><p>Every linked bot follows the Bozz squad channel automatically. Updates and new commands land there first.</p><div class="cta"><a class="pill pri" href="https://whatsapp.com/channel/0029Vb92I7p8aKvNNoPQt71C" target="_blank" rel="noopener">open_channel</a></div></div></section>
+</main>
+<footer>Bot Developed &amp; Powered by <b class="nd">Nimah Dev</b><span class="ver">Zadashi MD V02</span></footer>
+<script src="/fx.js"></script>
+<script>
+const $=i=>document.getElementById(i);
+let sid=null,qrt=null,tabCode=true,done=false;
+// boot log typing
+(function(){const L=['<span class="ok">[ OK ]</span> loading core modules','<span class="ok">[ OK ]</span> baileys multi-device engine','<span class="ok">[ OK ]</span> sticker studio, downloader, mod system','<span class="wn">[ .. ]</span> waiting for your device'];const el=$('boot');
+if(!el)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.innerHTML=L.join('\n');return}
+let i=0;(function next(){if(i>=L.length)return;el.innerHTML+=(i?'\n':'')+L[i++];setTimeout(next,420)})()})();
+
+// ---- command simulator
+(function(){const out=$('tout'),inp=$('tin');if(!out)return;const hist=[];let hi=0;
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const add=(h,c)=>{const d=document.createElement('div');d.className='ln '+(c||'');d.innerHTML=h;out.appendChild(d);out.scrollTop=out.scrollHeight};
+const rnd=n=>Math.floor(Math.random()*n);const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const STY=['#5ee1ff,#4d8dff','#fff176,#ff1744','#fff,#7b2ff7','#fff3b0,#e0a800','#39ff14,#0b3a0b','#8be9ff,#0b4f8a'];
+const C={
+help(){add('<span class="g">commands</span>: menu, song &lt;name&gt;, video &lt;name&gt;, ttp [1-10] &lt;text&gt;, attp, qc, 8ball &lt;q&gt;, ship a &amp; b, flip, dice, free [vpn|learn|design|dev], ping, about, neofetch, clear')},
+menu(){add('<span class="am">ZADASHI MD V02</span>');['1 download','2 search','3 tools','4 sticker','5 fun','6 group','7 owner','8 main','9 all commands'].forEach(x=>add('  [ '+x.split(' ')[0]+' ] '+x.slice(2)));add('reply with a number in whatsapp','mu')},
+async song(a){const q=a||'despacito';add('searching youtube for "'+esc(q)+'" ...','mu');await wait(600);add('<span class="g">[ OK ]</span> found: '+esc(q)+' (official audio)');await wait(500);add('downloading ... 4.2 MB','mu');await wait(700);add('<span class="g">[ OK ]</span> audio sent to chat')},
+async video(a){add('fetching video ...','mu');await wait(800);add('<span class="g">[ OK ]</span> video sent: '+esc(a||'clip')+'.mp4')},
+ttp(a){let m=/^(\d{1,2})\s+(.*)$/.exec(a||'');let st=m?(+m[1]-1)%STY.length:rnd(STY.length),t=m?m[2]:a;if(!t)return add('usage: ttp [style 1-10] &lt;text&gt;','mu');const c=STY[st].split(',');add('<span class="stk" style="color:'+c[0]+';text-shadow:0 0 14px '+c[1]+',2px 2px 0 '+c[1]+'">'+esc(t)+'</span>');add('<span class="g">[ OK ]</span> sticker created (style '+(st+1)+')')},
+attp(a){C.ttp(a||'Zadashi')},qc(a){add('<span class="qcb">'+esc(a||'reply to a message')+'</span>');add('<span class="g">[ OK ]</span> quote sticker created')},
+'8ball'(a){if(!a)return add('usage: 8ball &lt;question&gt;','mu');add('Q: '+esc(a));add('A: <span class="g">'+['Yes, definitely','It is certain','Most likely','Ask again later','Very doubtful','My answer is no'][rnd(6)]+'</span>')},
+ship(a){const p=(a||'').split('&');if(p.length<2)return add('usage: ship a &amp; b','mu');const n=rnd(101);add(esc(p[0].trim())+' + '+esc(p[1].trim())+' = <span class="g">'+n+'%</span> ['+'#'.repeat(Math.round(n/10))+'.'.repeat(10-Math.round(n/10))+']')},
+flip(){add('<span class="g">'+(rnd(2)?'HEADS':'TAILS')+'</span>')},dice(a){add('d'+(+a||6)+' = <span class="g">'+(1+rnd(+a||6))+'</span>')},
+free(a){const T={vpn:'Proton VPN, Cloudflare WARP, Psiphon, Windscribe',learn:'freeCodeCamp, Khan Academy, CS50, Coursera audit',design:'Canva, remove.bg, CapCut, Google Fonts',dev:'GitHub, Railway, VS Code, Cloudflare'};add(T[a]?'<span class="g">free '+a+'</span>: '+T[a]:'topics: free vpn | free learn | free design | free dev')},
+ping(){add('pong <span class="g">'+(60+rnd(240))+' ms</span>')},about(){add('Zadashi MD V02 - WhatsApp multi-device bot. Developed &amp; powered by <span class="g">Nimah Dev</span>.')},
+neofetch(){add('<span class="g">zadashi@md</span>\n  bot    Zadashi MD V02\n  cmds   '+(($('s1')||{}).textContent||'84')+'\n  dev    Nimah Dev\n  status online','pre')},
+clear(){out.innerHTML=''},date(){add(new Date().toString())}};
+async function run(line){line=line.trim();if(!line)return;add('<span class="pr">user@zadashi:~$</span> '+esc(line));hist.push(line);hi=hist.length;
+const i=line.replace(/^[.\/]/,'').indexOf(' ');const l=line.replace(/^[.\/]/,'');const cmd=(i<0?l:l.slice(0,i)).toLowerCase(),arg=i<0?'':l.slice(i+1).trim();
+if(C[cmd])await C[cmd](arg);else add('command not found: '+esc(cmd)+' (type <span class="g">help</span>)','err')}
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'){const v=inp.value;inp.value='';run(v)}else if(e.key==='ArrowUp'){if(hi>0)inp.value=hist[--hi]||'';e.preventDefault()}else if(e.key==='ArrowDown'){inp.value=hist[++hi]||'';e.preventDefault()}});
+$('chips').addEventListener('click',e=>{const c=e.target.dataset.c;if(c)run(c.replace(/&amp;/g,'&'))});
+add('Zadashi MD simulator ready. type <span class="g">help</span> or tap a button.','mu')})();
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const readList=()=>{try{return JSON.parse(LS.get('zd_list','[]'))||[]}catch(e){return[]}};
+const saveList=l=>LS.set('zd_list',JSON.stringify(l.slice(-20)));
+async function api(u,o){const r=await fetch(u,o);let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.error||'Error');return j}
+async function newSession(){const j=await api('/api/new-session',{method:'POST'});sid=j.sessionId;LS.set('zd_sid',sid)}
+async function ensure(){sid=LS.get('zd_sid',null);if(sid){try{const h=await api('/health?session='+sid);if(h.exists)return}catch(e){}}await newSession()}
+function renderList(){const l=readList(),ul=$('linked');ul.innerHTML=l.length?l.map(x=>'<li><span>+'+(x.number||'pairing')+'</span><b class="'+(x.on?'g':'')+'">'+(x.on?'online':'linked')+'</b></li>').join(''):'<li><span>no numbers yet</span><b>-</b></li>'}
+function showDone(number){done=true;$('pairBox').classList.add('hide');$('doneBox').classList.remove('hide');$('doneTxt').textContent='Number +'+(number||'')+' is online. Open your WhatsApp chat with yourself to see the welcome message and your settings password.'}
+function showPair(){done=false;$('doneBox').classList.add('hide');$('pairBox').classList.remove('hide')}
+function tab(c){tabCode=c;$('tCode').classList.toggle('on',c);$('tQr').classList.toggle('on',!c);$('pCode').classList.toggle('hide',!c);$('pQr').classList.toggle('hide',c);if(!c)qr();else clearTimeout(qrt)}
+$('tCode').onclick=()=>tab(true);$('tQr').onclick=()=>tab(false);
+async function qr(){clearTimeout(qrt);if(tabCode||done)return;try{const r=await fetch('/qr?session='+sid+'&t='+Date.now());if(r.ok){$('qrimg').src=URL.createObjectURL(await r.blob());$('qrimg').classList.remove('hide');$('qrmsg').textContent='scan now'}else{$('qrmsg').textContent='preparing qr...'}}catch(e){}qrt=setTimeout(qr,3000)}
+$('go').onclick=async()=>{const n=$('num').value.replace(/\D/g,'');$('msg').className='msg';if(n.length<8){$('msg').className='msg err';$('msg').textContent='enter a valid number';return}
+$('go').disabled=true;$('msg').textContent='generating code...';
+try{await ensure();const j=await api('/api/pair-code',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session:sid,number:n})});$('out').innerHTML='<div class="code">'+j.code+'</div>';$('msg').className='msg ok';$('msg').textContent='enter this code in whatsapp'}
+catch(e){$('msg').className='msg err';$('msg').textContent=e.message}$('go').disabled=false};
+$('another').onclick=async()=>{$('another').disabled=true;
+try{LS.del('zd_sid');sid=null;$('out').innerHTML='';$('num').value='';$('msg').className='msg';$('msg').textContent='';$('qrimg').classList.add('hide');$('qrmsg').textContent='preparing qr...';$('st').textContent='waiting for link';$('dot').className='dot';await newSession();showPair();tab(true);$('num').focus()}
+catch(e){showPair();$('msg').className='msg err';$('msg').textContent=e.message}$('another').disabled=false};
+async function tick(){try{if(sid){const h=await api('/health?session='+sid);const on=!!h.connected;
+if(on){$('dot').className='dot on';$('st').textContent='connected';const l=readList();let it=l.find(x=>x.sid===sid);if(!it){it={sid,number:h.number||''};l.push(it)}it.number=h.number||it.number;it.on=true;saveList(l);renderList();if(!done)showDone(it.number)}
+else{$('dot').className='dot';$('st').textContent='waiting for link'}}
+const s=await api('/api/stats');$('s1').textContent=s.commands;$('h1').textContent=s.commands;$('h2').textContent=s.active+' bots'}catch(e){}}
+(async()=>{renderList();try{await ensure()}catch(e){$('msg').className='msg err';$('msg').textContent=e.message}tick();setInterval(tick,4000)})();
+</script></body></html>

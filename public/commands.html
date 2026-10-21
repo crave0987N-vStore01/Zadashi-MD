@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Zadashi MD | commands</title><link rel="icon" href="/favicon.png"><meta name="theme-color" content="#010503"><link rel="manifest" href="/manifest.webmanifest"><meta property="og:type" content="website"><meta property="og:title" content="Zadashi MD - WhatsApp bot"><meta property="og:description" content="Free multi-device WhatsApp bot: downloads, sticker studio, tools and pro group moderation. Bot Developed &amp; Powered by Nimah Dev."><meta property="og:image" content="/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Zadashi MD - free multi-device WhatsApp bot. Link your number in seconds."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/zadashi.css?v=13"></head>
+<body><canvas id="rain"></canvas><div class="bg"></div>
+<header class="nav"><div class="nav-in"><a class="brand" href="/"><span class="pr">zadashi@md</span><span class="pc">:~$</span><span class="cb"></span></a><nav class="links"><a href="/">pair</a><a href="/commands" class="cur">commands</a><a href="/settings">settings</a><a href="/admin">admin</a></nav></div></header>
+<main class="wrap">
+<div class="sec" style="margin-top:10px"><div class="cmd">grep -i <span id="qshow">""</span> commands.db</div><h2>command <b>explorer</b></h2><p class="sub"><span id="cnt">...</span> commands. tap a command to copy it.</p></div>
+<div class="win"><div class="bar"><i></i><i></i><i></i><span>search</span></div><div class="body">
+<label for="q">search</label><input id="q" type="text" placeholder="song, sticker, warn, vpn ..." autocomplete="off" autocapitalize="off" spellcheck="false">
+<div class="chips" id="cats" style="margin-top:14px"></div></div></div>
+<div class="cmdlist" id="list"></div>
+</main>
+<footer>Bot Developed &amp; Powered by <b class="nd">Nimah Dev</b><span class="ver">Zadashi MD V02</span></footer>
+<script src="/fx.js"></script>
+<script>
+const $=i=>document.getElementById(i);let ALL=[],CAT='all',P='.';
+const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function render(){const q=$('q').value.trim().toLowerCase();$('qshow').textContent='"'+q+'"';
+const r=ALL.filter(c=>(CAT==='all'||c.category===CAT)&&(!q||(c.name+' '+c.desc+' '+c.aliases.join(' ')).toLowerCase().includes(q)));
+$('cnt').textContent=r.length+' / '+ALL.length;
+$('list').innerHTML=r.map(c=>'<div class="cm" data-n="'+esc(c.name)+'"><div class="cn"><b>'+P+esc(c.name)+'</b>'+(c.usage?' <span class="mu">'+esc(c.usage)+'</span>':'')+'</div><div class="cd">'+esc(c.desc)+'</div><div class="cf"><span>'+esc(c.category)+'</span>'+(c.admin?'<span class="am">admin</span>':'')+(c.group?'<span class="c">group</span>':'')+(c.aliases.length?'<span class="mu">'+esc(c.aliases.join(' · '))+'</span>':'')+'</div></div>').join('')||'<div class="note" style="padding:20px">no match</div>'}
+function cats(cs){$('cats').innerHTML='<button data-k="all" class="on">all</button>'+cs.map(c=>'<button data-k="'+c.id+'">'+esc(c.title.toLowerCase())+'</button>').join('')}
+$('q').oninput=render;
+$('cats').onclick=e=>{const k=e.target.dataset.k;if(!k)return;CAT=k;[...$('cats').children].forEach(b=>b.classList.toggle('on',b.dataset.k===k));render()};
+$('list').onclick=async e=>{const el=e.target.closest('.cm');if(!el)return;const t=P+el.dataset.n;try{await navigator.clipboard.writeText(t)}catch(x){}el.classList.add('copied');setTimeout(()=>el.classList.remove('copied'),900)};
+fetch('/api/commands').then(r=>r.json()).then(j=>{ALL=j.commands;P=j.prefix||'.';cats(j.categories);render()}).catch(()=>{$('cnt').textContent='offline'});
+</script></body></html>

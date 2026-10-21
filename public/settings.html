@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Zadashi MD | settings</title><link rel="icon" href="/favicon.png"><meta name="theme-color" content="#010503"><link rel="manifest" href="/manifest.webmanifest"><meta property="og:type" content="website"><meta property="og:title" content="Zadashi MD - WhatsApp bot"><meta property="og:description" content="Free multi-device WhatsApp bot: downloads, sticker studio, tools and pro group moderation. Bot Developed &amp; Powered by Nimah Dev."><meta property="og:image" content="/logo.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="description" content="Zadashi MD - free multi-device WhatsApp bot. Link your number in seconds."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/zadashi.css?v=13"></head>
+<body><canvas id="rain"></canvas><div class="bg"></div>
+<header class="nav"><div class="nav-in"><a class="brand" href="/"><span class="pr">zadashi@md</span><span class="pc">:~$</span><span class="cb"></span></a><nav class="links"><a href="/">pair</a><a href="/commands">commands</a><a href="/settings" class="cur">settings</a><a href="/admin">admin</a></nav></div></header>
+<main class="wrap narrow">
+<div class="sec" style="margin-top:10px"><div class="cmd">sudo ./settings.sh</div><h2>bot <b>settings</b></h2><p class="sub">log in with your bot number and the password the bot sent to your whatsapp.</p></div>
+<div class="win" id="login"><div class="bar"><i></i><i></i><i></i><span>login</span></div><div class="body"><label>number</label><input id="ph" type="tel" inputmode="numeric" placeholder="94771234567"><label>password</label><input id="pw" type="password" placeholder="sent to your whatsapp">
+<button class="btn pri" id="lg">login</button><div class="msg" id="lm"></div></div></div>
+<div class="hide" id="panel"><div class="win"><div class="bar"><i></i><i></i><i></i><span>config.json</span></div><div class="body"><div class="row"><div><b id="num">-</b><small id="up"></small></div><div><span class="dot" id="dot"></span><span id="st"></span></div></div>
+<div class="row"><div><b>work mode</b><small>public = everyone, private = owner only</small></div><select id="mode"><option value="public">public</option><option value="private">private</option></select></div>
+<div class="row"><div><b>anti call</b><small>reject incoming calls</small></div><label class="sw"><input type="checkbox" id="anticall"><i></i></label></div>
+<div class="row"><div><b>always online</b><small>stay online</small></div><label class="sw"><input type="checkbox" id="alwaysOnline"><i></i></label></div>
+<div class="row"><div><b>auto read</b><small>blue ticks for messages</small></div><label class="sw"><input type="checkbox" id="autoRead"><i></i></label></div>
+<div class="row"><div><b>auto typing</b><small>show typing before replies</small></div><label class="sw"><input type="checkbox" id="autoTyping"><i></i></label></div>
+<div class="msg" id="sm"></div></div></div>
+<button class="btn red" id="un">unlink_bot</button><button class="btn ghost" id="lo">logout</button></div>
+</main>
+<footer>Bot Developed &amp; Powered by <b class="nd">Nimah Dev</b><span class="ver">Zadashi MD V02</span></footer>
+<script src="/fx.js"></script>
+<script>
+const $=i=>document.getElementById(i);let T=localStorage.getItem('zd_ut')||'';const K=['anticall','alwaysOnline','autoRead','autoTyping'];
+async function api(u,b){const r=await fetch(u,{method:b===undefined?'GET':'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+T},body:b===undefined?undefined:JSON.stringify(b)});let j={};try{j=await r.json()}catch(e){}if(!r.ok)throw new Error(j.error||'Error');return j}
+function show(m){$('login').classList.add('hide');$('panel').classList.remove('hide');$('num').textContent='+'+m.number;$('dot').className='dot'+(m.connected?' on':'');$('st').textContent=m.connected?'online':'offline';
+$('up').textContent='uptime '+Math.floor(m.uptime/60)+' min';$('mode').value=m.settings.mode;K.forEach(k=>$(k).checked=!!m.settings[k])}
+async function load(){try{show(await api('/api/user/me'))}catch(e){T='';localStorage.removeItem('zd_ut')}}
+$('lg').onclick=async()=>{try{const j=await api('/api/user/login',{phone:$('ph').value,password:$('pw').value});T=j.token;localStorage.setItem('zd_ut',T);load()}catch(e){$('lm').className='msg err';$('lm').textContent=e.message}};
+async function save(){try{const b={mode:$('mode').value};K.forEach(k=>b[k]=$(k).checked);await api('/api/user/settings',b);$('sm').className='msg ok';$('sm').textContent='saved'}catch(e){$('sm').className='msg err';$('sm').textContent=e.message}}
+$('mode').onchange=save;K.forEach(k=>$(k).onchange=save);
+$('lo').onclick=()=>{localStorage.removeItem('zd_ut');location.reload()};
+$('un').onclick=async()=>{if(!confirm('Unlink this bot from WhatsApp?'))return;try{await api('/api/user/unlink',{});localStorage.removeItem('zd_ut');location.href='/'}catch(e){alert(e.message)}};
+if(T)load();
+</script></body></html>
